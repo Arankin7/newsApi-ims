@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import moment from "moment";
 
 function ArticleSearch() {
 
@@ -37,7 +38,7 @@ function ArticleSearch() {
                 <Card style={{width: '18rem'}}>                
                 <Card.Header>Source: {article.source.name}</Card.Header>
                     <Card.Body>
-                        <div><i>{article.publishedAt}</i></div>
+                        <div><i>{moment(article.publishedAt).utc().format('MMMM Do YYYY')}</i></div>
                         <Card.Title>{article.title}</Card.Title>
                         <Card.Img variant="top" src={article.urlToImage}></Card.Img>
                         <Card.Text>{article.description}</Card.Text>

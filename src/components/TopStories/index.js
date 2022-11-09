@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Container from "react-bootstrap/esm/Container";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import moment from "moment/moment";
 
 function TopStories(){
     const [trendingArticles, setTrendingArticles] = useState(null);
@@ -29,7 +30,7 @@ function TopStories(){
                 <Card style={{width: '18rem'}}>                
                 <Card.Header>Source: {article.source.name}</Card.Header>
                     <Card.Body>
-                        <div><i>{article.publishedAt}</i></div>
+                        <div><i>{moment(article.publishedAt).utc().format('MMMM Do YYYY')}</i></div>
                         <Card.Title>{article.title}</Card.Title>
                         <Card.Img variant="top" src={article.urlToImage}></Card.Img>
                         <Card.Text>{article.description}</Card.Text>
