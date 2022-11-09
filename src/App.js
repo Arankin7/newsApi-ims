@@ -9,6 +9,7 @@ import Header from './components/Header';
 import TopStories from './components/TopStories';
 import ArticleSearch from './components/ArticleSearch';
 import Footer from './components/Footer';
+import RandomArticle from './components/RandomArticle';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path='/' element={<TopStories />} />
           <Route path='/search' element={<ArticleSearch />} />
+          <Route path='/random' element={<RandomArticle />} />
         </Routes>
         <Footer />
       </BrowserRouter>

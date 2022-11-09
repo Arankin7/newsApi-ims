@@ -15,7 +15,7 @@ function Header() {
                 <Nav className="me-auto">
                     <Nav.Link><Link to={"/"} style={{ color: 'inherit', textDecoration: 'inherit'}}>Home</Link></Nav.Link>
                     <Nav.Link><Link to={"/search"} style={{ color: 'inherit', textDecoration: 'inherit'}}>Search</Link></Nav.Link>
-                    <Nav.Link>Random?</Nav.Link>
+                    <Nav.Link><Link to={"/random"} style={{ color: 'inherit', textDecoration: 'inherit' }}>Suprise Me</Link></Nav.Link>
                     <NavDropdown title="Sort" menuVariant="dark" drop="start">
                         <NavDropdown.Item>Alphabetically</NavDropdown.Item>
                         <NavDropdown.Item>Published Date</NavDropdown.Item>
