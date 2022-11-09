@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import moment from "moment";
 
 function ArticleSearch() {
@@ -11,8 +13,9 @@ function ArticleSearch() {
 
     const handleChange = event => {
         setUserInput(event.target.value);
-
         console.log('searching for: ', event.target.value);
+
+        UserSearch(event.target.value);
     }
 
     // const userInput = document.getElementById("userInput").value;
@@ -33,22 +36,26 @@ function ArticleSearch() {
             <input type="text" placeholder="Yummy Tacos" value={userInput} onChange={handleChange}></input>
             <Button variant="primary" onClick={UserSearch}>Search</Button>
 
+            <Row className="justify-content-md-center">
             {searchResults && searchResults.map((article, index) => (
-                <Container key={index}>
+            <Col sm="auto">
+            <Container key={index}>
                 <Card style={{width: '18rem'}}>                
-                <Card.Header>Source: {article.source.name}</Card.Header>
-                    <Card.Body>
-                        <div><i>{moment(article.publishedAt).utc().format('MMMM Do YYYY')}</i></div>
-                        <Card.Title>{article.title}</Card.Title>
-                        <Card.Img variant="top" src={article.urlToImage}></Card.Img>
-                        <Card.Text>{article.description}</Card.Text>
-                        <Button variant="primary" href={article.url} target="_blank">
-                            Read More
-                        </Button>
-                    </Card.Body>
+                    <Card.Header>Source: {article.source.name}</Card.Header>
+                        <Card.Body>
+                            <Card.Title>{article.title}</Card.Title>
+                            <Card.Img variant="top" src={article.urlToImage}></Card.Img>
+                            <Card.Text>{article.description}</Card.Text>
+                            <Button variant="primary" href={article.url} target="_blank">
+                                Read More
+                            </Button>
+                        </Card.Body>
+                    <Card.Footer><i>{moment(article.publishedAt).utc().format('MMMM Do YYYY')}</i></Card.Footer>
                 </Card>
             </Container>
+            </Col>       
             ))}
+            </Row>
         </div>
     )
 }

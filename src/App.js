@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import React from 'react';
-import Dropdown from 'react-bootstrap/Dropdown'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -13,31 +13,14 @@ import Footer from './components/Footer';
 function App() {
   return (
     <div className="App">
-
-      <header>
-        <Header></Header>
-        
-      </header>
-      
-      <main>
-      <Dropdown>
-        <Dropdown.Toggle variant="dark" id="dropdown-basic">
-          Sort
-        </Dropdown.Toggle>
-
-        <Dropdown.Menu>
-          <Dropdown.Item>Alphabetically</Dropdown.Item>
-          <Dropdown.Item>Publication Date</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-
-        <TopStories></TopStories>
-        
-
-        <ArticleSearch></ArticleSearch>
-      </main>
-
-        <Footer></Footer>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path='/' element={<TopStories />} />
+          <Route path='/search' element={<ArticleSearch />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
