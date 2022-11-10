@@ -2,7 +2,6 @@ import React, {useState, useContext} from "react";
 import SortContext from "../../sortContext"; 
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import moment from "moment";
@@ -35,7 +34,7 @@ function ArticleSearch() {
         UserSearch(event.target.value);
     }
 
-    const apiUrl = 'https://newsapi.org/v2/everything?q='+ userInput + '&apiKey=17caf3e26a8d4ddb94101e3243f24804';
+    const apiUrl = 'https://newsapi.org/v2/everything?q='+ userInput + '&apiKey=c87e1b0769754cf8b8d9d87b5f2da311';
 
     function UserSearch(userInput){
         fetch(apiUrl)
@@ -50,7 +49,7 @@ function ArticleSearch() {
         <div>
             <h1>Search for Articles</h1>
             <input type="text" placeholder={randomPlaceholder} value={userInput} onChange={handleChange}></input>
-            <Button variant="primary" onClick={UserSearch}>Search</Button>
+            <button className="searchBtn" onClick={UserSearch}>Search</button>
 
             <Row className="justify-content-md-center">
             {searchResults && searchResults.map((article, index) => (
@@ -62,9 +61,9 @@ function ArticleSearch() {
                             <Card.Title>{article.title}</Card.Title>
                             <Card.Img variant="top" src={article.urlToImage}></Card.Img>
                             <Card.Text>{article.description}</Card.Text>
-                            <Button variant="primary" href={article.url} target="_blank">
+                            <button className="readMoreBtn" href={article.url} target="_blank">
                                 Read More
-                            </Button>
+                            </button>
                         </Card.Body>
                     <Card.Footer><i>{moment(article.publishedAt).utc().format('MMMM Do YYYY')}</i></Card.Footer>
                 </Card>

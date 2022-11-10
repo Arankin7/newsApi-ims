@@ -1,9 +1,10 @@
 import logo from './logo.svg';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
+import Button from 'react-bootstrap/button'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { SortProvider } from './sortContext';
+import './App.css';
 
 // Component Imports
 import Header from './components/Header';
@@ -11,12 +12,32 @@ import TopStories from './components/TopStories';
 import ArticleSearch from './components/ArticleSearch';
 import Footer from './components/Footer';
 
+let topBtn = document.getElementById("topBtn");
+
+window.onscroll = function() {ScrollBtn()};
+
+function ScrollBtn() {
+  if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
+    topBtn.style.display = "block";
+  }
+  else
+  (
+    topBtn.style.display = "none"
+  )
+}
+
+function ToTop() {
+  document.body.scrollTop = 0; 
+  document.documentElement.scrollTop = 0;
+}
+
 function App() {
   return (
     <div className="App">
       <SortProvider>
         <BrowserRouter>
-          <Header />
+          <Header /> 
+          <button onClick={ToTop} id="topBtn" title='Go to Top of page'>Top</button>
           <Routes>
             <Route path='/' element={<TopStories />} />
             <Route path='/search' element={<ArticleSearch />} />

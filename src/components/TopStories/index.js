@@ -7,41 +7,47 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row'
 import moment from "moment/moment";
 
-import { alphaAsc, alphaDes, pubAsc, pubDes } from "../Header"
-
 function TopStories(){
     const [trendingArticles, setTrendingArticles] = useState(null);
-    const apiSearch = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=17caf3e26a8d4ddb94101e3243f24804';
+    const apiSearch = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=c87e1b0769754cf8b8d9d87b5f2da311';
 
     const {SortResults} = useContext(SortContext);
 
     React.useEffect(() => {
-        fetch(apiSearch)
+        TrendingStories();
+    }, []);
+
+    function TrendingStories() {
+        fetch (apiSearch)
             .then(res => res.json())
             .then(data => {
                 SortResults(data, setTrendingArticles);
-            })
-    }, []);
+            });
+    }
     
     return (
         <div>
-            <div>
-                <h2>Trending Topics</h2>
-                <Button variant="dark" onClick="window.location.reload()">Refresh</Button>
-            </div>
+            <Row className="titleContainer">
+                <Col>
+                    <h2 className="titleText">Trending Articles</h2>
+                </Col>
+                <Col>
+                    <Button size="sm" variant="dark" onClick={TrendingStories}>Refresh</Button>
+                </Col>
+            </Row>
 
-            <Row className="justify-content-md-center">
+            <Row>
             {trendingArticles && trendingArticles.map((article, index) => (
-            <Col sm="auto">
-                <Container key={index}>
-                <Card bg="light" style={{width: '18rem'}}>                
+            <Col>
+                <Container key={index} className="articleContainer">
+                <Card bg="light" style={{width: '22rem'}} className="boxShadow">                
                 <Card.Header>Source: {article.source.name}</Card.Header>
                     <Card.Body>
                         
                         <Card.Title>{article.title}</Card.Title>
                         <Card.Img variant="top" src={article.urlToImage}></Card.Img>
                         <Card.Text>{article.description}</Card.Text>
-                        <Card.Link variant="primary" href={article.url} target="_blank">
+                        <Card.Link href={article.url} target="_blank">
                             Read More
                         </Card.Link>
                     </Card.Body>

@@ -18,20 +18,20 @@ function Header() {
 
     return (
         
-        <Navbar bg="dark" variant="dark">
+        <Navbar className="header boxShadow" bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand>NewsApi</Navbar.Brand>
-                <Nav className="me-auto">
-                    <Nav.Link><Link to={"/"} style={{ color: 'inherit', textDecoration: 'inherit'}}>Home</Link></Nav.Link>
+                <Navbar.Brand className="textShadow headerText">NewsApi</Navbar.Brand>
+                <Nav className="md-auto">
+                    <Nav.Link><Link to={"/"} style={{ color: 'inherit', textDecoration: 'inherit'}}>Trending</Link></Nav.Link>
                     <Nav.Link><Link to={"/search"} style={{ color: 'inherit', textDecoration: 'inherit'}}>Search</Link></Nav.Link>
                     <NavDropdown title="Sort" menuVariant="dark" drop="start" onSelect={(selectedKey => ChooseSort(selectedKey))}>
                         <NavDropdown.Item eventKey={alphaAsc}>Alphabetically Ascending</NavDropdown.Item>
                         <NavDropdown.Item eventKey={alphaDes}>Alphabetically Descending</NavDropdown.Item>
-                        <NavDropdown.Item eventKey={pubAsc}>Published Date: Newest First</NavDropdown.Item>
-                        <NavDropdown.Item eventKey={pubDes}>Published Date: Oldest First</NavDropdown.Item>
+                        <NavDropdown.Item eventKey={pubAsc}>Newest First</NavDropdown.Item>
+                        <NavDropdown.Item eventKey={pubDes}>Oldest First</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
-            </Container>
+          </Container>
         </Navbar>
     );
 }
