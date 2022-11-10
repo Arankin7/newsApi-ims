@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import SortContext from "../../sortContext";
 import Container from "react-bootstrap/esm/Container";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -6,16 +7,19 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row'
 import moment from "moment/moment";
 
+import { alphaAsc, alphaDes, pubAsc, pubDes } from "../Header"
+
 function TopStories(){
     const [trendingArticles, setTrendingArticles] = useState(null);
-    const apiSearch = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=2b7c3079f57b4775b9829a555f91c54d';
+    const apiSearch = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=17caf3e26a8d4ddb94101e3243f24804';
+
+    const {SortResults} = useContext(SortContext);
 
     React.useEffect(() => {
         fetch(apiSearch)
             .then(res => res.json())
             .then(data => {
-                console.log('Trending now: ',data.articles);
-                setTrendingArticles(data.articles);
+                SortResults(data, setTrendingArticles);
             })
     }, []);
     

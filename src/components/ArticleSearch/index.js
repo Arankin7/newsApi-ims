@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import SortContext from "../../sortContext"; 
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -10,6 +11,8 @@ function ArticleSearch() {
 
     const [userInput, setUserInput] = useState('');
     const [searchResults, setSearchResults] = useState('');
+
+    const {SortResults} = useContext(SortContext);
 
     // List of words for a random placeholder
     const inputPlaceholders = [
@@ -29,20 +32,17 @@ function ArticleSearch() {
 
     const handleChange = event => {
         setUserInput(event.target.value);
-        console.log('searching for: ', event.target.value);
-
         UserSearch(event.target.value);
     }
 
-    // const userInput = document.getElementById("userInput").value;
-    const apiUrl = 'https://newsapi.org/v2/everything?q='+ userInput + '&apiKey=2b7c3079f57b4775b9829a555f91c54d';
+    const apiUrl = 'https://newsapi.org/v2/everything?q='+ userInput + '&apiKey=17caf3e26a8d4ddb94101e3243f24804';
 
     function UserSearch(userInput){
         fetch(apiUrl)
             .then(res => res.json())
             .then(data => {
                 console.log('articles searched for: ', data);
-                setSearchResults(data.articles);
+                SortResults(data, setSearchResults);
             });
     }
 
