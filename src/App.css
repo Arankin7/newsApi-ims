@@ -134,3 +134,13 @@
 .articleContainer {
   padding: 0.5em 1em 1em;
 }
+
+input {
+  border-radius: 3px;
+  filter: opacity(60%);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+button {
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
