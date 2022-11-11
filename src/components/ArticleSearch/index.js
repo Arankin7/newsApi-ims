@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import moment from "moment";
+import { apiKey } from "../../App";
 
 function ArticleSearch() {
 
@@ -24,17 +25,24 @@ function ArticleSearch() {
         'CNN',
         'Fox News',
         'The Verge',
-        'Cryptocurrency'
+        'Cryptocurrency',
+        'Tesla',
+        'Apple',
+        'Microsoft'
     ];
     // Pulls a random index from list of placeholders
     const randomPlaceholder = inputPlaceholders[Math.floor(Math.random() * inputPlaceholders.length)];
+
+    React.useEffect(() => {
+        UserSearch(); 
+    }, [SortResults]);
 
     const handleChange = event => {
         setUserInput(event.target.value);
         UserSearch(event.target.value);
     }
 
-    const apiUrl = 'https://newsapi.org/v2/everything?q='+ userInput + '&apiKey=c87e1b0769754cf8b8d9d87b5f2da311';
+    const apiUrl = 'https://newsapi.org/v2/everything?q='+ userInput + '&apiKey=' + apiKey;
 
     function UserSearch(userInput){
         fetch(apiUrl)
@@ -47,23 +55,24 @@ function ArticleSearch() {
 
     return (
         <div>
-            <h1>Search for Articles</h1>
+            <div className="titleContainer">
+            <h2 className="titleText">Search for Articles</h2>
             <input type="text" placeholder={randomPlaceholder} value={userInput} onChange={handleChange}></input>
             <button className="searchBtn" onClick={UserSearch}>Search</button>
-
-            <Row className="justify-content-md-center">
+            </div>
+            <Row>
             {searchResults && searchResults.map((article, index) => (
             <Col sm="auto">
-            <Container key={index}>
-                <Card style={{width: '18rem'}}>                
+            <Container key={index} className="articleContainer">
+                <Card bg="light" style={{width: '22rem'}} className="boxShadow">                
                     <Card.Header>Source: {article.source.name}</Card.Header>
                         <Card.Body>
                             <Card.Title>{article.title}</Card.Title>
                             <Card.Img variant="top" src={article.urlToImage}></Card.Img>
                             <Card.Text>{article.description}</Card.Text>
-                            <button className="readMoreBtn" href={article.url} target="_blank">
+                            <a href={article.url} rel="noreferrer" target="_blank"><button className="readMoreBtn">
                                 Read More
-                            </button>
+                            </button></a>
                         </Card.Body>
                     <Card.Footer><i>{moment(article.publishedAt).utc().format('MMMM Do YYYY')}</i></Card.Footer>
                 </Card>

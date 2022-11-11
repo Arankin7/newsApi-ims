@@ -1,6 +1,17 @@
+:root {
+  --lavWeb: rgba(232, 225, 239, 1);
+  --lightCyan: rgba(217, 255, 248, 1);
+  --aeroBlue: rgba(199, 255, 218, 1);
+  --aeroBlue2: rgba(173, 255, 237, 1);
+  --teaGreen: rgba(196, 244, 199, 1);
+  --laurelGreen: rgba(155, 178, 145, 1);
+  --teaGreenHov: rgb(128, 153, 130);
+  }
+
 .App {
   text-align: center;
   overflow-x: hidden;
+  background: linear-gradient(91deg, var(--lavWeb), rgb(221, 221, 221), var(--lightCyan) 90%);
 }
 
 .App-logo {
@@ -39,15 +50,15 @@
 }
 
 #topBtn {
-  display: block;
   position: fixed;
-  bottom: 30px;
+  bottom: 40px;
   right: 30px;
   z-index: 99;
+  cursor: pointer;
   color: rgb(0, 0, 0);
   background-color: rgba(94, 94, 94, 0.4);
   border-color: rgba(94, 94, 94, 0.3);
-  padding: 0.75em;
+  padding: 0.5em;
   border-radius: 7px 15px;
   font-size: 1em;
   font-weight: 700;
@@ -55,20 +66,35 @@
 
 .searchBtn {
   color: rgb(0, 0, 0);
-  background-color: rgba(13, 97, 76, 0.473);
+  background-color: var(--lightCyan);
   border-color: rgba(94, 94, 94, 0.3);
   padding: 0.25em;
   margin: 0.75em 1.25em;
-  border-radius: 4px 10px;
+  border-radius: 4px 8px;
   font-size: 1em;
   font-weight: 700;
 }
+
+.readMoreBtn {
+  background-color: var(--teaGreen);
+  border-color: var(--laurelGreen);
+  border-radius: 3px 5px;
+  font-weight: 500;
+}
+
+.readMoreBtn:hover {
+  background-color: var(--teaGreenHov);
+  border-radius: 5px 3px;
+}
+
 .searchBtn:hover {
-  background-color: rgba(13, 97, 76, 0.9);
+  background-color: var(--aeroBlue2);
+  border-radius: 8px 4px;
 }
 
 #topBtn:hover {
   background-color: rgb(94, 94, 94);
+  border-radius: 15px 7px;
 }
 
 .boxShadow {

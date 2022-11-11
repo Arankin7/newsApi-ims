@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Button from 'react-bootstrap/button'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { SortProvider } from './sortContext';
 import './App.css';
@@ -12,12 +11,15 @@ import TopStories from './components/TopStories';
 import ArticleSearch from './components/ArticleSearch';
 import Footer from './components/Footer';
 
+export const apiKey = '17caf3e26a8d4ddb94101e3243f24804';
+
 let topBtn = document.getElementById("topBtn");
 
-window.onscroll = function() {ScrollBtn()};
+window.onscroll = function(){ScrollBtn()};
 
 function ScrollBtn() {
-  if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
+
+  if(document.body.scrollTop > 40 || document.documentElement.scrollTop > 40){
     topBtn.style.display = "block";
   }
   else
