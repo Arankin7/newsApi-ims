@@ -12,7 +12,7 @@ import ArticleSearch from './components/ArticleSearch';
 import Footer from './components/Footer';
 
 // Enter your api Key here!!!
-export const apiKey = '';
+export const apiKey = '2b7c3079f57b4775b9829a555f91c54d';
 
 let topBtn = document.getElementById("topBtn");
 
