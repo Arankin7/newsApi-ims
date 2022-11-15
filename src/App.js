@@ -11,7 +11,8 @@ import TopStories from './components/TopStories';
 import ArticleSearch from './components/ArticleSearch';
 import Footer from './components/Footer';
 
-export const apiKey = '17caf3e26a8d4ddb94101e3243f24804';
+// Enter your api Key here!!!
+export const apiKey = '';
 
 let topBtn = document.getElementById("topBtn");
 
